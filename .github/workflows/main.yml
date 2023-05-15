@@ -1,6 +1,16 @@
 name: "deploy02"
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - test
+        - prod
 jobs:
   deploy-to:
     runs-on: ubuntu-latest
@@ -16,6 +26,7 @@ jobs:
         with:
           scope: resourcegroup
           resourceGroupName: "${{ vars.resource_group }}"
+          parameters: webAppName="anpazdevops-${{ inputs.environment }}"
           template: "ARM-Templates/container-webapp-template.json"
           deploymentMode: Incremental
           
