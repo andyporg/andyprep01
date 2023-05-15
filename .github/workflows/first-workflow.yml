@@ -1,4 +1,4 @@
-name: "deploy"
+name: "deploy01"
 on:
   issues:
     types: [created]
