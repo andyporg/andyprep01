@@ -1,4 +1,4 @@
-name: "deploy"
+name: "deploy02"
 on:
   workflow_dispatch:
 jobs:
@@ -15,7 +15,7 @@ jobs:
         uses: Azure/arm-deploy@v1.0.8
         with:
           scope: resourcegroup
-          resourceGroupName: "what-the-hack-devops-with-github"
+          resourceGroupName: "${{ vars.resource_group }}"
           template: "ARM-Templates/container-webapp-template.json"
           deploymentMode: Incremental
           
